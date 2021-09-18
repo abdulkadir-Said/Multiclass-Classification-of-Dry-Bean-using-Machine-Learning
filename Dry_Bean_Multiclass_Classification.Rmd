@@ -30,8 +30,8 @@ area of a bean seed.
 7. Extent (Ex): The ratio of the pixels in the bounding box to the bean area.
 
 ## Target Description
-Six different types of dry beans were used in this analysis and takes into account the morphometric properties of those dry beans. The general characteristic of the 
-six dry beans that were analyzed can be summarized as follows:
+Six different types of dry beans were used in this analysis and takes into account the morphometric properties of those dry beans. 
+The general characteristic of the six dry beans that were analyzed can be summarized as follows:
 1. Bombay: White in color, has an oval shape, and its seeds are very large.
 2. Cali: White in color, its seeds are slightly plump, slightly larger than other most dry beans, and is shaped like a kidney.
 3. Dermason: White in color, round in shape, and are fuller flat.
@@ -62,10 +62,20 @@ six dry beans that were analyzed can be summarized as follows:
 |  Sira      |   5.40           |
 
 ## OBJETIVE
-The primary objective of this analysis is to develop an automated method that can predict the value of a harvest from a population of cultivation from a single farm that has been presented at market. The net worth of a single pound of dry beans from harvest will be predicted using statistical learning methods that were taught in Modern Applied Statistics I and II at SDSU.
+The primary objective of this analysis is to develop an automated method that can predict the value of a harvest from a population of 
+cultivation from a single farm that has been presented at market. The net worth of a single pound of dry beans from harvest will be 
+predicted using statistical learning methods that were taught in Modern Applied Statistics I and II at SDSU.
 
 ## Methodology
-The initial analysis process will begin by performing exploratory data anlysis (EDA). This phase is a critical step to understand the distribution of the data and uncover patterns or trends that may not be immediately apparent. Often times certain assumptions are made about the distribution of the data prior to exploring the structure of the data. Therefore, the scientific process dictates observing the patterns in the data to check if the initial assumptions are appropriate and form the basis for hypothesis testing moving forward. Principal component analysis (PCA) will be used for feature decomposition order to reduce the dimension of the data. This will allow us to understand and visualize in a 2-dimensional plane the intricate relationships between the covariates while maintaining as much information as possible from the original datatset. Furthermore, boruta algorithm which is a wrapper built around random forest classification algorithm will be utilized to isolate important features that will be used to construct various competing classification models.
+The initial analysis process will begin by performing exploratory data anlysis (EDA). This phase is a critical step to understand the 
+distribution of the data and uncover patterns or trends that may not be immediately apparent. Often times certain assumptions are made
+about the distribution of the data prior to exploring the structure of the data. Therefore, the scientific process dictates observing 
+the patterns in the data to check if the initial assumptions are appropriate and form the basis for hypothesis testing moving forward. 
+Principal component analysis (PCA) will be used for feature decomposition order to reduce the dimension of the data. This will allow 
+us to understand and visualize in a 2-dimensional plane the intricate relationships between the covariates while maintaining as much 
+information as possible from the original datatset. Furthermore, boruta algorithm which is a wrapper built around random forest 
+classification algorithm will be utilized to isolate important features that will be used to construct various competing 
+classification models.
 
 Model evaluation is an integral part of statistical modeling aimed at gaging a models' ability to explain the functional form of the data. In predictive analytics, this is typically done by evaluating performance metric such as: 1) accuracy; 2) sensitivty; 3) specificity; 4) CV error rate; 5) ROC curve. Accuracy is used to measure the ratio of accurately estimated samples to the total number of samples. The error rate is the ratio of the values of the incorrectly categorized data to the total number of categories/classes. Recall is a measure of the proportion of the positive classes that are classified as true whereas specificity is the proportion of negative classes that were classified as true. Moreover, precision is the ratio of the correctly classified positive samples to the estimated total positive observations. Additionally, ROC curve will be used to see to see the trade-off between sensitivity (True Positive Rate) and specificity (1 - False Positive Rate). The benefit of using the ROC curve as a metric is that it does not depend on the class distribution of the data. Finally, to show the prediction that were made, a confusion matrix for multi-classes will be used where the diagonal represents the correct classification. This will summarize the predictions that the classifier made in a way where important information like the true positives, true negatives, false negatives, and false positives can easily be viewed in a simple table.
 
