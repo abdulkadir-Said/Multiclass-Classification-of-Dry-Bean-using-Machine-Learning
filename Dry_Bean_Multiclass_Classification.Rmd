@@ -1,6 +1,6 @@
 ---
-title: "Capstone Project"
-author: "Amin Baabol"
+title: "Multiclass Classification of Dry Beans"
+author: "Abdulkadir Said"
 date: "4/30/2021"
 output:
   word_document: default
@@ -15,11 +15,7 @@ library(dummies)
 library(multiROC)
 knitr::opts_chunk$set(echo = F,warning = F,message = F)
 ```
-
-## INTRODUCTION
-
-### BACKGROUND
-Dry bean (Phaseolus vulgaris L) is the most important and most produced pulse in the world (Koklu et al., 2020) and ranks third among legume crop productions in Turkey. Furthermore, the United States is the global leader in dry bean production, and each year, U.S. farmers plant approximately between 1.5 to 1.7 million acres of edible dry beans (US Dry Bean Council). Seed classification, whether manual or automatic, is essential for both marketing and production of dry beans in order to provide the principles of sustainable agricultural systems (Koklu et al. 2020). Manual classification and sorting of dry beans is a difficult process as it is inefficient and time consuming when working in high production volumes (Koklu et al. 2020). Therefore machine learning classification models like the ones used in this analysis can help automate the process of dry bean segregation and allow farmers to bring well sorted high quality dry beans to the market which will increase the value of the seeds. In countries like Turkey, the seeds of beans that are cultivated are divided into varieties according to their form, shape, type, and structure, as well as their market demand. In their study (Koklu et al. 2020) obtained images of dry beans and used image processing methods in order to clean and clear unwanted noise from the images. computer vision system was deployed in order to obtain these images. After image segmentation (a process of removing dry bean shadows, eliminating background noise, and separating each dry bean from the other beans) of the dry beans, 12 dimensional and 4 shape features were obtained for each dry bean using MATLAB software (Koklu et al. 2020). Of those features, 7 are going to be used in this analysis. The 7 features that were selected for this analysis are:
+## Variable Description
 
 1. **Area: Area (A):** The area of a bean zone and the number of pixels within its boundaries.
 
