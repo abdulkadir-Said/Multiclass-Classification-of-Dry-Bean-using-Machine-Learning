@@ -1,5 +1,5 @@
 # Multiclass-Classification-of-Dry-Bean-using-Machine-Learning
-1.	INTRODUCTION
+## 1.	INTRODUCTION
 Dry bean (Phaseolus vulgaris L) is the most important & most produced pulse in the world (Koklu et al., 2020).  The United States, as a global leader in dry bean production produces between 1.5 to 1.7 million acres of edible dry beans a year. Seed classification, whether manual or automatic, is essential for both marketing & production of dry beans (Koklu et al. 2020). Manual classifications are difficult & require a lot of time, which essentially makes it an inefficient process. ML classifications like the one developed in this analysis can help automate these process & allow farmers to bring to market well sorted dry beans. This will also increase the value of the seeds.
 
 ## 2.	OBJECTIVE
