@@ -30,7 +30,8 @@ area of a bean seed.
 7. Extent (Ex): The ratio of the pixels in the bounding box to the bean area.
 
 ## Target Description
-Six different types of dry beans were used in this analysis and takes into account the morphometric properties of those dry beans. The general characteristic of the six dry beans that were analyzed can be summarized as follows:
+Six different types of dry beans were used in this analysis and takes into account the morphometric properties of those dry beans. The general characteristic of the 
+six dry beans that were analyzed can be summarized as follows:
 1. Bombay: White in color, has an oval shape, and its seeds are very large.
 2. Cali: White in color, its seeds are slightly plump, slightly larger than other most dry beans, and is shaped like a kidney.
 3. Dermason: White in color, round in shape, and are fuller flat.
