@@ -16,32 +16,30 @@ library(multiROC)
 knitr::opts_chunk$set(echo = F,warning = F,message = F)
 ```
 ## Variable Description
-**1. Area: Area (A):** The area of a bean zone and the number of pixels within its boundaries.
-    **Formula:** \[A=\sum_{r,c \in R} l\]
-    where r, c is the size of the region R
-2. **Perimeter (P):** Bean circumference is defined as the length of its border.
-3. **MajorAxisLength (Major axis length (L)):** The distance between the ends of the longest line that can
+1. Area (A): The area of a bean zone and the number of pixels within its boundaries.
+Formula: \[A=\sum_{r,c \in R} l\]
+where r, c is the size of the region R
+2. Perimeter (P): Bean circumference is defined as the length of its border.
+3. MajorAxisLength (Major axis length (L)): The distance between the ends of the longest line that can
 be drawn from a bean.
-4. **MinorAxisLength (Minor axis length (l)):** The longest line that can be drawn from the bean while standing perpendicular to the main.
-5. **Eccentricity (Ec:** Eccentricity of the ellipse having the same moments as the region.
-6. **ConvexArea (Convex Area (C)):** Number of pixels in the smallest convex polygon that can contain the
+4. MinorAxisLength (Minor axis length (l)): The longest line that can be drawn from the bean while standing perpendicular to the main.
+5. Eccentricity (Ec): Eccentricity of the ellipse having the same moments as the region.
+6. ConvexArea (Convex Area (C)): Number of pixels in the smallest convex polygon that can contain the
 area of a bean seed.
-7. **Extent (Ex):** The ratio of the pixels in the bounding box to the bean area.
+7. Extent (Ex): The ratio of the pixels in the bounding box to the bean area.
 
 ## Target Description
 Six different types of dry beans were used in this analysis and takes into account the morphometric properties of those dry beans. The general characteristic of the six dry beans that were analyzed can be summarized as follows:
-
-1. **Bombay:** White in color, has an oval shape, and its seeds are very large.
-2. **Cali:** White in color, its seeds are slightly plump, slightly larger than other most dry beans, and is shaped like a kidney.
-3. **Dermason:** White in color, round in shape, and are fuller flat.
-4. **Horoz:** White in color, longer, cylindrical, and medium in size.
-5. **Seker:** White in color, round in shape, and has large seeds.
-6. **Sira:** White in color, one end is flat and one end is round, and its seeds are small.
-
+1. Bombay: White in color, has an oval shape, and its seeds are very large.
+2. Cali: White in color, its seeds are slightly plump, slightly larger than other most dry beans, and is shaped like a kidney.
+3. Dermason: White in color, round in shape, and are fuller flat.
+4. Horoz White in color, longer, cylindrical, and medium in size.
+5. Seker: White in color, round in shape, and has large seeds.
+6. Sira: White in color, one end is flat and one end is round, and its seeds are small.
 
 **Table 1: Dry Bean sample distribution**
 
-|  Dry Bean  |  Count  |  Average Seed Weight (grams/seed)  | 
+|  Dry Bean  |  Count  |  Average Seed Weight (grams/seed) | 
 |------------|---------|-----------------------------------|
 |  Bombay    |   500   |  1.92                             | 
 |  Cali      |   500   |  0.61                             |  
@@ -49,7 +47,6 @@ Six different types of dry beans were used in this analysis and takes into accou
 |  Horoz     |   500   |  0.52                             |  
 |  Seker     |   500   |  0.49                             | 
 |  Sira      |   500   |  0.38                             | 
-
 
 **Table 2: Prices for 1 lb of Dry Beans**
 
@@ -62,7 +59,6 @@ Six different types of dry beans were used in this analysis and takes into accou
 |  Seker     |   2.72           | 
 |  Sira      |   5.40           |
 
-
 ## OBJETIVE
 The primary objective of this analysis is to develop an automated method that can predict the value of a harvest from a population of cultivation from a single farm that has been presented at market. The net worth of a single pound of dry beans from harvest will be predicted using statistical learning methods that were taught in Modern Applied Statistics I and II at SDSU.
 
@@ -71,19 +67,14 @@ The initial analysis process will begin by performing exploratory data anlysis (
 
 Model evaluation is an integral part of statistical modeling aimed at gaging a models' ability to explain the functional form of the data. In predictive analytics, this is typically done by evaluating performance metric such as: 1) accuracy; 2) sensitivty; 3) specificity; 4) CV error rate; 5) ROC curve. Accuracy is used to measure the ratio of accurately estimated samples to the total number of samples. The error rate is the ratio of the values of the incorrectly categorized data to the total number of categories/classes. Recall is a measure of the proportion of the positive classes that are classified as true whereas specificity is the proportion of negative classes that were classified as true. Moreover, precision is the ratio of the correctly classified positive samples to the estimated total positive observations. Additionally, ROC curve will be used to see to see the trade-off between sensitivity (True Positive Rate) and specificity (1 - False Positive Rate). The benefit of using the ROC curve as a metric is that it does not depend on the class distribution of the data. Finally, to show the prediction that were made, a confusion matrix for multi-classes will be used where the diagonal represents the correct classification. This will summarize the predictions that the classifier made in a way where important information like the true positives, true negatives, false negatives, and false positives can easily be viewed in a simple table.
 
-
-
 ## Exploratory Data Analysis
 The aim of this section is to properly address the following about the data:
   *statistical properties of the explanatory variables my means of summary statistics
   *distributions of the independent variables to ensure normality assumption is not violated
   *characteristics and relationships among the independent variables to identify appropriate models
-
-
+  
 ### Dataset
 Our labeled dataset contains 3,000 rows and 9 columns. Each row represents a sample observation or an individual dry bean that belongs to a particular class of white beans. 7 out of the 9 columns represent specific morphometric measurements recorded in each observation in the form of pixel count. The remaining 2 columns are 'class', which is the categorical target variable containing 6 classes of beans, and the index column. This index column is removed from the dataset after we verified that no duplicate observations were present in the data. There are no missing values or class imbalance present in the data as indicated in ##Figure.This is means any errors found in our classification or predictions is probably due to model inadequacy or irreducible errors. 
-
-
 
 ```{r,importing dataset}
 #importing labeled dataset
@@ -94,13 +85,10 @@ Labeled.Data <- read.csv("C:/Users/abdul/OneDrive/Desktop/Graduate School/Spring
 
 #b.test <- read.csv("~/School/STAT 602/samp.B.csv")
 
-
 #c.test <- read.csv("~/School/STAT 602/samp.C.csv")
 
 #Checking the first 6 rows of the imported data
-
 ```
-
 
 ```{r,data type}
 #data type distribution
@@ -108,20 +96,16 @@ library(visdat)
 library(dplyr)
 Labeled.Data %>% vis_dat()
 ```
-
 ```{r,duplicate check}
 ## Check for duplicates
 Labeled.Data <- Labeled.Data[!duplicated(Labeled.Data$X),]
 dim(Labeled.Data)
 ```
-
-
 ```{r,check missing values}
 #Plot the missing values, by variable
 library(ggplot2)
 library(naniar)
 gg_miss_var(Labeled.Data,show_pct = TRUE)+ labs(y = "Proportion of Missings")
-
 ```
 ```{r,Class balance}
 library(ggplot2) 
@@ -129,22 +113,16 @@ ggplot(Labeled.Data) +
   aes(x = Class,fill=Class) +
   geom_bar()
 ```
-
 ### Summary Statistics
-
 The explanatory variables are all measured in pixel count. This means there is no concern for potential issues associated with differing units. Area has a mean value of 69,875 pixels which is the largest mean value relative to the other independent variables. Eccentricity and Extent are the two variables with the lowest mean values at 0.7560 and 0.7528, respectively. Table 1 describes the summary statistics of the dataset.
-
 
 ```{r}
 library(pastecs)
 #stat.desc(Labeled.Data[,-1], basic=TRUE, desc=TRUE, norm=FALSE, p=0.95)
 kable(summary(Labeled.Data[,-1]),caption = "Table 1: Summary Statistics")
 ```
-
 ### Normality Assumption Check
-
 Since many of the commonly used classification algorithms implicitly assume input data is normally distributed, we check the distribution of all explanatory variables by class. For example,the QQ-plots from the *car* package show normal distribution in almost all the variables with the exception of few variables, namely 'Area','Perimeter', and 'Extent'.The distribution of 'Area' for the Bombay beans seems to have observations that occur outside of the confidence band indicating potential presence of outliers.'Perimeter' is even more uncooperative in following the normality line and 'Extent' is pushing the boundary of breaking the normality assumption. The presence of outliers is further supported by the box plots that demonstrate left skewness in 'Area' and its associate, e.g. 'MajorAxisLength'; in contrast, 'Extent' seem to be right skewed.The boxplots suggest that these variables are related, meaning if 'Area' contains outliers it is very likely those related variables will contain outier as well.It is also concerning to notice that 'Extent' is directly calculated from 'Area'.This relationship and potentially other hidden relationships can cast ambiguity in the interpretation of coefficient estimates of models constructed with these highly correlated variables. That is,the unique contribution of the individual explanatory variable to the model might become difficult to isolate.
-
 
 ```{r,Normality check}
 set.seed(324)
@@ -158,7 +136,6 @@ qqPlot(Labeled.Data$MinorAxisLength, groups = Labeled.Data$Class)
 qqPlot(Labeled.Data$Eccentricity, groups = Labeled.Data$Class)
 qqPlot(Labeled.Data$ConvexArea, groups = Labeled.Data$Class)
 qqPlot(Labeled.Data$Extent, groups = Labeled.Data$Class)
-
 
 #Boxplot plots
 ### Area
@@ -218,12 +195,10 @@ ggplot(Labeled.Data, aes(x=Class, y=Extent, fill=Class)) +
     theme(legend.position="none") +
     scale_fill_brewer(palette="Set1")+
 labs( title = "Extent Boxplot")
-
 ```
 
 ### Density Distribution
 Density distribution of all explanatory variables were constructed to visualize interesting patterns potentially unique to a particular class of beans. It is evident in the density plots that some classes of beans have unique distributions discernible from other classes of beans. For example,Bombay's area distribution is significantly different from other classes of beans,rarely overlapping with any of them.This is also true for variables like 'MajorAxisLength', 'MinorAxisLength' and 'ConvexArea' as they are related to 'Area'.Hence, a model will likely find Area or any of its related variables to be significant.Moreover,'Eccentricity' which measures how different a shape is from true circle indicates Seker bean distribution having significantly different distribution than other classes.Notice 'Extent' wildly overlapping distribution for all 6 classes of beans. This might a be a precursor for redundunt predictor. 
-
 ```{r}
 #Densisty plots
 library(ggplot2)
@@ -243,7 +218,6 @@ ggplot(data=Labeled.Data[,-1], aes(x=Extent, group=Class, fill=Class)) +
   geom_density(adjust=1.5, alpha=.4) + theme_ipsum()+labs( title = "Extent Density")
 ggplot(data=Labeled.Data[,-1], aes(x=log(Extent), group=Class, fill=Class)) +
   geom_density(adjust=1.5, alpha=.4) + theme_ipsum()+labs( title = "Extent Density")
-
 ```
 
 ### Variable Interactions
@@ -253,7 +227,6 @@ The QQ-plots, box plots, density plots ,and scatter plots shown in ##F7-F9, cumu
 
 ```{r,Variable Relationships}
 names(Labeled.Data)
-
 ### Check the relationship between Area and other predictors
 library(hrbrthemes)
 ### Area vs Perimeter
@@ -271,7 +244,6 @@ ggplot(Labeled.Data, aes(x=Area, y=ConvexArea, color=Class,shape=Class)) +
 ### Area vs Extent
 ggplot(Labeled.Data, aes(x=Area, y=Extent, color=Class,shape=Class)) + geom_point(size=1) + theme_ipsum()+labs( title = "Area vs Extent")
 
-
 ### Check the relationship between Perimeter and other predictors
 library(hrbrthemes)
 ### Perimeter vs MajorAxisLength
@@ -285,7 +257,6 @@ ggplot(Labeled.Data, aes(x=Perimeter, y=ConvexArea, color=Class,shape=Class)) +
   geom_point(size=1) + theme_ipsum()+labs( title = "Perimeter vs ConvexArea")
 ### Perimeter vs Extent
 ggplot(Labeled.Data, aes(x=Perimeter, y=Extent, color=Class,shape=Class)) + geom_point(size=1) + theme_ipsum()+labs( title = "Perimeter vs Extent")
-
 
 ### Check the relationship between Eccentricity and other predictors
 
@@ -304,8 +275,6 @@ Labeled.Data %>%
   select(where(is.numeric)) %>% 
   vis_cor()
 ```
-
-
 ### Principle Component Analysis
 Principal component analysis (PCA) serves two important tasks in our analysis.First, to make it easier to visualize the relationships between predictors. We have 7 predictors and 3000 observations, to properly visualize the relationships of all predictors in a two dimensional plot will require $\frac{7!}{2!(7-2)!}$ plots.
 
@@ -318,7 +287,6 @@ According to the PCA literature, there is no unified interpretation of the princ
 Moreover,the second principal components is positively correlated with 'Eccentricity' at a correlated rate of 69%. Surprisingly, it is the only variable that this principal component correlates to, which means this second component is a measure of 'Eccentricity'.
 
 To summarize, the first principal components explains about 68% of the total variance in the data, followed by the second principal which captures approximately 20% of the variability in the data.The third principal component explains about about 9% of the variance. Together the first,second and third principal components account for 96% of the variance in the dataset. Therefore, we will use the first three principal components to fit multiple classification models using the transformed dataset from the principal component analysis.
-
 
 ```{r}
 set.seed(32)
@@ -356,11 +324,9 @@ pairs.panels(pca.bean$x,gap=0,bg=c("red","blue","yellow")[test.y],pch = 21)
 ### principal component train and test sets
 train.pca <- pca.bean$x[,1:3]
 test.pca <- as.matrix(test.x)%*% as.matrix(pca.bean$rotation[,1:3])
-
 ```
 
 ## Model Fitting
-
 ```{r}
 library(caret)
 set.seed(100)
@@ -368,20 +334,15 @@ ind <- createDataPartition(Labeled.Data$Class,p = 0.80,list = F)
 train1 <- Labeled.Data[ind,]
 test1 <- Labeled.Data[-ind,]
 
-
 pred <- predict(pca.bean,train1)
 train_1 <- data.frame(pred,train1[8])
 pred1 <- predict(pca.bean,test1)
 test_1 <- data.frame(pred1,test1[8])
-
 ```
 
 ### K-Nearest Neighbor
-
 *Method*
-
 A KNN model was fit using all the features of the dry bean and 10-k fold cross validation was applied select the optimal K. Different values of K were tried. The K that minimizes the error from 10-fold cross validation was found to be *K=26*.  The plot below illustrates the grid search results and the best model which used *K=26*. 
-
 
 ```{r}
 set.seed(100)
@@ -394,35 +355,23 @@ knnFit
 # K = 10
 knnPredict <- predict(knnFit,newdata = test.data)
 
-
 # Plot 
 plot(knnFit, main = "KNN Model 1")
-
-1-0.8612
 confusionMatrix(predict(knnFit,newdata = test.data), as.factor(test.data$Class))
-
 ```
 
-
 ### Evaluation
-
 ```{r}
 con.knn <- confusionMatrix(data = knnPredict, reference = as.factor(test.data$Class))
 kable(con.knn$table,caption = "Table 1: KNN Confusion Matrix")
 kable(con.knn$overall[1]*100,caption = "Table 1A: KNN Model Accuracy")
 ```
 
-
-
 The KNN model overall accuracy 87%. By looking at the confusion matrix, we see that the model classified all the observations for class *BOmbay=144*  correctly,Followed by *CALI=151, SEKER=131,DERMASON=126,HOROZ=126, and SIRA=105* respectively. The TPR and TNR are reported in the table below. we want to maximize sensitivity and Specificity for all classes especially for classes of white beans seeds that are expensive more than other seeds per pound. It Seems that sensitivity and Specificity of the model are high for most all classes of white beans seeds which an indicator of a good model. The ROC was plotted. For an ideal classification model, we want the curve to be closer to the top left side of the chart. From the plot, we see that all the classes have a good sensitivity and Specificity values since all the curves for all classes are high. We see that the curve for seed *Bombay* and the other classes are close to 1 which means that the classes for most observations were classified correctly. This ROC indicates a great performance.
-
-
 
 ```{r}
 # ROC 
-pred00 <- predict(knnFit,
-                          newdata = test.data, "prob")
-
+pred00 <- predict(knnFit, newdata = test.data, "prob")
 pred.df <- data.frame(pred00)
 colnames(pred.df) <- paste(colnames(pred.df), "_pred_Class")
 true_label <- dummies::dummy(test.data$Class, sep = ".")
@@ -443,11 +392,8 @@ ggplot(plot_roc_df, aes(x = 1-Specificity, y=Sensitivity)) +
   theme(plot.title = element_text(hjust = 0.5), 
                  legend.justification=c(1, 0), legend.position=c(.95, .05),
                  legend.title=element_blank(), 
-                 legend.background = element_rect(fill=NULL, size=0.5, 
-                                                           linetype="solid", colour ="black"))
+                 legend.background = element_rect(fill=NULL, size=0.5, linetype="solid", colour ="black"))
 ```
-
-
 
 ### Principle Component Analysis KNN Model
 
@@ -480,7 +426,6 @@ for(k in 1:30){
     model.knn.test <- knn(train=X[trainIndex,], test=X[-trainIndex,], cl=responseY[trainIndex], k=k, prob=F)
     test.error[k] <- sum(model.knn.test!=responseY[-trainIndex])/length(responseY[-trainIndex])
 }
-
 # PLOTTING:
 ## Error rates
 plot(1:30, train.error, col='red', 
@@ -489,10 +434,7 @@ plot(1:30, train.error, col='red',
 points(1:30, test.error, col='blue', type = 'l')
 legend("topright", legend=c("train error", "test error"),
        col=c("red", "blue"), lty=1:2, cex=0.8)
-
-
-
-
+       
 library(readxl)
 library(tidyr)
 library(tidyverse)
@@ -528,7 +470,6 @@ juice(pca_prep) %>%
   geom_point(size = 1) +
   labs(title = "PCA Separation")
 
-
 # PLOTTING 3 Dimentions:
 # pc 1 vs. pc 2
 plot(pc.comp1[-trainIndex], pc.comp2[-trainIndex], col = model.knn.test)
@@ -537,24 +478,19 @@ plot(pc.comp1[-trainIndex], pc.comp3[-trainIndex], col = model.knn.test)
 # pc 2 vs. pc 3
 plot(pc.comp2[-trainIndex], pc.comp3[-trainIndex], col = model.knn.test)
 
-
 # Model Confusion Matrix
 length(responseY[-trainIndex])
 class(responseY[trainIndex])
 con.knn1<-confusionMatrix(model.knn.test, as.factor(responseY[-trainIndex]))
 kable(con.knn1$table,caption = "Table 2: KNN-PCA Confusion Matrix")
 kable(con.knn1$overall[1]*100,caption = "Table 2A: KNN-PCA Model Accuracy")
-
 ```
 
 ```{r}
 KNN.models <- data.frame(Models=c('Full KNN','KNN_PCA'),  Accuracy.Score=c(con.knn$overall[1]*100,con.knn1$overall[1]*100))
 kable(KNN.models, caption = "Tabe 3: Comparing The Accuracy of Two KNN Models")
 ```
-
-
 **The KKN That uses all predictors slighlty outperforms the KNN that uses PCA components as predictors**
-
 
 ```{r}
 # Cross-Validating KNN Model
@@ -580,8 +516,6 @@ legend("topright", legend=c("train error", "test error"),
        col=c("red", "blue"), lty=1:2, cex=0.8)
 
 ```
-
-
 ### Linear Discriminant Analysis
 
 *Method*
@@ -590,7 +524,6 @@ In the past, we have dealt with two class classification problems and we mainly 
 
 LDA calculates discriminant scores for each observation to classify what class it is in. These scores are calculated by getting the linear combinations of independent variables. Finally the model assignes an observation to each class of white beans for which  discriminant score is biggest.
 
-
 #### LDA Assumptions 
 
   * LDA assumes Gaussian distribution of the predictor variables.
@@ -598,10 +531,7 @@ LDA calculates discriminant scores for each observation to classify what class i
   
 First we fit a LDA model with all the feature and then We fit a linear discriminant analysis model with variables extracted from Boruta packgage which is built on random forest algorithm. These variables were Area, Eccentricity and Extent were used to fit the model and get predictions. 10 - k fold cross validation was used to avoid over fitting the model reliable error. 
 
-
-#### LDA Interprestions:
-
-
+#### LDA Model:
 ```{r}
 library(MASS)
 # Fit LDA Model 
@@ -611,11 +541,7 @@ lda.model1$finalModel
 
 # Predict 
 pred.lda1 = predict(lda.model1, test.data)
-
 ```
-
-
-
 ```{r}
 library(MASS)
 # Fit LDA Model 
@@ -628,19 +554,18 @@ plot(lda.model$results)
 pred.lda = predict(lda.model, test.data)
 ```
 
-Full Model
+LDA: Full Model
 
 
 The output of the LDA model that contains all features from the original data set shows the prior probabilities, which has equal proportions of classes in the training data, group means, coefficients of linear discriminant, and Proportion of trace. The coefficients mean that the first LD is a linear combination of the variables $6.939294e-05 * Area + 6.002823e-05 * Perimeter + 1.718258e-03 * MajorAxisLength + 1.069158e-02 * MinorAxisLength - 2.114752e+00 * Eccentricity + 3.123620e-06 * ConvexArea + 5.679234e-01 * Extent$. The value for each LD is scaled which means it will have a mean of 0 and variance of 1.
 
-Reduced Model
+LDA: Reduced Model
 
 The group mean shows the mean values for different predictors when they fall into a predicted class. for instance, there is a clear difference between the proportion of Areas and the proportion  Perimeter between different white bean classes. The variation in mean groups does not exist as much for the rest of the variables. The higher the difference between mean values of a feature, the easier classifying will be. 
 
 The output of the second LDA model shows the prior probabilities, which shows equal proportions of classes in the training data, group means, coefficients of linear discriminant, and Proportion of trace. The coefficients mean that the first LD is a linear combination of the variables $-9.072646e-05 * Area +  2.865280e+00 * Eccentricity + -5.907758e-01 * Extent$. The value for each LD is scaled which means it will have a mean of 0 and variance of 1.
 
 The group mean shows the mean values for different predictors when they fall into a predicted class. for instance, there is a clear difference between the proportion of area between different white bean classes. The variation in mean groups does not exist as much for variables *Eccentricity  and Extent* for all classes.
-
 
 #### LDA Evaluation:
 
@@ -655,13 +580,11 @@ con.lda <- confusionMatrix(data = pred.lda, reference = as.factor(test.data$Clas
 kable(con.lda$table,caption = "Table 5: Reduced LDA Model Confusion Matrix")
 kable(con.lda$overall[1]*100,caption = "Table 5A: Full LDA Model Accuracy")
 ```
-
 ```{r}
 library(gridExtra)
 library(ggplot2)
 # Full ROC 
-pred1 <- predict(lda.model1,
-                          newdata = test.data, "prob")
+pred1 <- predict(lda.model1, newdata = test.data, "prob")
 
 pred.df <- data.frame(pred1)
 colnames(pred.df) <- paste(colnames(pred.df), "_pred_Class")
@@ -675,7 +598,6 @@ pr_res <- multi_pr(final_df, force_diag=T)
 
 plot_roc_df <- plot_roc_data(roc_res)
 
-
  ggplot(plot_roc_df, aes(x = 1-Specificity, y=Sensitivity)) +
   geom_path(aes(color = Group, linetype=Method), size=1.5) +
   geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1), 
@@ -684,14 +606,9 @@ plot_roc_df <- plot_roc_data(roc_res)
   theme(plot.title = element_text(hjust = 0.3), 
                  legend.justification=c(1, 0), legend.position=c(.95, .05),
                  legend.title=element_blank(), 
-                 legend.background = element_rect(fill=NULL, size=0.5, 
-                                                           linetype="solid", colour ="black"))
-
+                 legend.background = element_rect(fill=NULL, size=0.5, linetype="solid", colour ="black"))
 # Reduced ROC 
-
-pred <- predict(lda.model,
-                          newdata = test.data, "prob")
-
+pred <- predict(lda.model, newdata = test.data, "prob")
 pred.df <- data.frame(pred)
 colnames(pred.df) <- paste(colnames(pred.df), "_pred_Class")
 true_label <- dummies::dummy(test.data$Class, sep = ".")
@@ -713,30 +630,22 @@ ggplot(plot_roc_df, aes(x = 1-Specificity, y=Sensitivity)) +
   theme(plot.title = element_text(hjust = 0.3), 
                  legend.justification=c(1, 0), legend.position=c(.95, .05),
                  legend.title=element_blank(), 
-                 legend.background = element_rect(fill=NULL, size=0.5, 
-                                                           linetype="solid", colour ="black"))
-
+                 legend.background = element_rect(fill=NULL, size=0.5, linetype="solid", colour ="black"))
 ```
 
 **Full LDA Model**
-
 The LDA model that used all the predictors in the dry beans data set had an overall accuracy 85.44% which is good. By looking at the confusion matrix, we see that the model classified all the observations for class *BOmbay=150* are classified correctly,Followed by *CALI=136, SEKER=125, HOROZ=122, SIRA=120, DERMASON=116** respectively. The TPR and TNR are reported in the table below. we want to maximize sensitivity and Specificity for all classes especially for classes of white beans seeds that are expensive more than other seeds per pound. It Seems that sensitivity and Specificity of the model are high for most all classes of white beans seeds which an indicator of a good model. The ROC was plotted. For an ideal classification model, we want the curve to be closer to the top left side of the chart. From the plot, we see that all the classes have a good sensitivity and Specificity values since all the curves for all classes are high. We see that the curve for seed *Bombay* and the other classes are close to 1 which means that the most obervations classes were classified correctly. This ROC indicates a great performance.
 
 **Reduced LDA Model**
-
 The reduced model overall accuracy 86.11% which is good. By looking at the confusion matrix, we see that the model classified all the observations for class *BOmbay=150* are classified correctly,Followed by *CALI=139, SEKER=128,DERMASON=123,SIRA=122, and HOROZ=113* respectively. The TPR and TNR are reported in the table below. we want to maximize sensitivity and Specificity for all classes especially for classes of white beans seeds that are expensive more than other seeds per pound. It Seems that sensitivity and Specificity of the model are high for almost all classes of white beans seeds which an indicator of a good model.
 
 The Roc of the reduced LDA model seems to have curves that closer to 1. 
-
 
 ```{r}
 lda.Models <- data.frame(Models=c('Full LDA','Reduced LDA'),  Accuracy.Score=c(con.lda1$overall[1]*100,con.lda$overall[1]*100))
 kable(lda.Models, caption = "Tabe 6: Comparing The Accuracy of Two LDA Models")
 ```
-
-
 From Table The Reduced model slightly outperforms the full model. 
-
 
 ### Quadratic Discriminant Analysis 
 
@@ -749,9 +658,7 @@ QDA is an extension of LDA that allows capturing non linear separation in the da
   * Different covariance for each of the response classes
   * qDA assumes Gaussian distribution of the predictor variables.
 
-#### QDA Interprestions:
-
-
+#### QDA Model:
 ```{r}
 # Fit QDA Model 
 qda.model = train(Class ~ Area+Eccentricity+Extent, data=train.data, method="qda",
@@ -767,19 +674,15 @@ The output shows the prior probabilities, which shows equal proportions of class
 The group mean shows the mean values for different predictors when they fall into a predicted class. for instance, there is a clear difference between the proportion of area between differen white bean classes. The variation in mean groups does not exist as much for variables *Eccentricity and Extent* in all classes. The higher the difference between mean values of a feature, the easier classifying will be. 
 
 #### QDA Evaluation:
-
 ```{r}
 # Confusion Matrix 
 con.qda <- confusionMatrix(data = pred.qda, reference = as.factor(test.data$Class))
 kable(con.qda$table,caption = "Table 7: QDA Model Confusion Matrix")
 kable(con.qda$overall[1]*100,caption = "Table 7A: QDA Model Accuracy")
 ```
-
 ```{r}
 # ROC 
-pred2 <- predict(qda.model,
-                          newdata = test.data, "prob")
-
+pred2 <- predict(qda.model, newdata = test.data, "prob")
 pred.df <- data.frame(pred2)
 colnames(pred.df) <- paste(colnames(pred.df), "_pred_Class")
 true_label <- dummies::dummy(test.data$Class, sep = ".")
@@ -794,31 +697,21 @@ plot_roc_df <- plot_roc_data(roc_res)
 
 ggplot(plot_roc_df, aes(x = 1-Specificity, y=Sensitivity)) +
   geom_path(aes(color = Group, linetype=Method), size=1.5) +
-  geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1), 
-                        colour='grey', linetype = 'dotdash') +
+  geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1), colour='grey', linetype = 'dotdash') +
   theme_bw() + 
   theme(plot.title = element_text(hjust = 0.5), 
                  legend.justification=c(1, 0), legend.position=c(.95, .05),
                  legend.title=element_blank(), 
-                 legend.background = element_rect(fill=NULL, size=0.5, 
-                                                           linetype="solid", colour ="black"))
-
+                 legend.background = element_rect(fill=NULL, size=0.5, linetype="solid", colour ="black"))
 ```
 The model overall accuracy 89.44% which is better than the accuracy of acuuracy of LDA model. By looking at the confusion matrix, we see that the model classified all the observations for class *BOmbay=150* are classified correctly,Followed by *CALI=142, SEKER=133,DERMASON=128,SIRA=128 and HOROZ=124* respectively. The TPR and TNR are reported in the table below. we want to maximize sensitivity and Specificity for all classes especially for classes of white beans seeds that are expensive more than other seeds per pound. It Seems that sensitivity and Specificity of the model are high for most all classes of white beans seeds which an indicator of a good model. The ROC was plotted. For an ideal classification model, we want the curve to be closer to the top left side of the chart. From the plot, we see that all the classes have a good sensitivity and Specificity values since all the curves for all classes are high. We see that the curve for seed *Bombay* and the other classes are close to 1 which means that the most observations classes were classified correctly. This ROC indicates a great performance.. This ROC indicates a great performance.
 
-
-
-
 ## Models' Comaprison 
-
 ```{r}
 Model.com <- data.frame(Models=c('Selected KNN','Selected LDA','QDA'),  Accuracy.Score=c(con.knn$overall[1]*100,con.lda1$overall[1]*100,con.qda$overall[1]*100))
 kable(Model.com, caption = "Table 8: Comparing Models' Accuracy")
 ```
-
-
 **Now that we bulit models using different set of variables and algorthims, We can see from table 8 that QDA model outperforms KNN and LDA models.**
-
 
 Bombay ($5.56/lb)
 Cali ($6.02/lb)
@@ -883,7 +776,6 @@ Predicted.Price <- (b1*Bombay.weight)+(b2*Cali.weight)+(b3*Dermason.weight)+(b4*
 cat("Your total price is $",round(Predicted.Price,2))
 
 ## creating new variable called price
-
 ## loop through all elements of `test$Class`, use `if-else` to allocate value for `test$Price`
 #Price($/lb)*(lb/453.593 grams)*Average_Seed_Weight(grams/seed)=Price($/seed)
 #($/lb)*(lb/453.592grams)*(1.92grams/seed)
@@ -920,4 +812,3 @@ dim(test.data)
 6.524623
 6.568415
 ```
-
