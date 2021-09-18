@@ -15,6 +15,7 @@ library(dummies)
 library(multiROC)
 knitr::opts_chunk$set(echo = F,warning = F,message = F)
 ```
+j
 ## Variable Description
 1. Area (A): The area of a bean zone and the number of pixels within its boundaries.
 Formula: \[A=\sum_{r,c \in R} l\]
